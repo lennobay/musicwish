@@ -38,7 +38,6 @@ func main() {
 	router.GET("/api/client/all_songs", api.AllSongsOfEvent)
 	router.POST("/api/client/add_song", api.AddNewSong)
 	router.POST("/api/client/vote_song", api.VoteforSong)
-	router.POST("/api/admin/create_event", api.CreateNewEvent)
 	router.NoRoute(func(c *gin.Context) {
 		c.FileFromFS(c.Request.URL.Path, http.Dir("./website"))
 	})
