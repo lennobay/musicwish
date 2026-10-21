@@ -28,7 +28,7 @@ func main() {
 		AllowCredentials: true,
 		MaxAge:           12 * time.Hour,
 	}))
-
+	api.CreateNewEvent()
 	api.CreateSessionDB()
 	router.GET("/api/status", func(c *gin.Context) {
 		c.Status(http.StatusOK)
