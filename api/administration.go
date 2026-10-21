@@ -4,19 +4,18 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
 )
 
 const (
 	host     = "localhost"
 	port     = 5432
-	user     = "wish"
-	password = "wish"
-	dbname   = "wishdb"
+	user     = "musicwish"
+	password = "g6k2N9pWC17X4I"
+	dbname   = "musicwish"
 )
 
-func CreateNewEvent(c *gin.Context) {
+func CreateNewEvent() {
 
 	PsqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=disable",
@@ -39,16 +38,16 @@ func CreateNewEvent(c *gin.Context) {
 		panic(err)
 	}
 	sqlStatementCreateEvent := `INSERT INTO events ( name, eventtable, owner) values($1, $2, $3)`
-	_, err = db.Exec(sqlStatementCreateEvent, c.Query("event_name"), "eventtable_"+c.Query("event_name"), "someone")
+	_, err = db.Exec(sqlStatementCreateEvent, "halloween", "eventtable_"+"halloween", "someone")
 	if err != nil {
 		panic(err)
 	}
-	event_table_name := "eventtable_" + c.Query("event_name")
+	event_table_name := "eventtable_" + "halloween"
 	sqlStatementCreateEventTable := `	CREATE TABLE IF NOT EXISTS ` + event_table_name + ` (
 		id serial4 not null,
 		song_id varchar(255) not null UNIQUE,
 		song_votes int not null,
-		constraint` + ` eventtable_pkey_` + c.Query("event_name") + ` primary key (id)
+		constraint` + ` eventtable_pkey_` + "halloween" + ` primary key (id)
 	)`
 	_, err = db.Exec(sqlStatementCreateEventTable)
 	if err != nil {
