@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Musicwish</title>
+        <link rel="stylesheet" type="text/css" href="index.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Creepster&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <script>
+            import "/index.css";
+        </script>
+        <header>
+            <header-left>
+                <p>Musicwish</p>
+            </header-left>
+            <header-right> </header-right>
+        </header>
+        <hero>
+            <hero-left>
+                <h1>Gib deine Stimme für ein Lied oder füge ein neues hinzu</h1>
+            </hero-left>
+            <hero-right>
+                <form id="event_chooser">
+                    <input type="text" placeholder="Event ID" name="eventname" />
+                    <input type="submit" value="Teilnehmen"/>
+                </form>
+            </hero-right>
+
+            <script>
+                document
+                    .getElementById("event_chooser")
+                    .addEventListener("submit", function (e) {
+                        e.preventDefault();
+                        const form = new FormData(this);
+                        window.location.href =
+                            "/client/?event=" + form.get("eventname");
+                    });
+            </script>
+        </hero>
+        <footer>
+            <p>&copy; MUSICWISH BY LENNARD HAUFE</p>
+            <p>Version v1.0.0</p>
+            <a href="https://haufe-server.de/en/imprint_privacy"
+                >Impressum und Privatspähre</a
+            >
+        </footer>
+    </body>
+</html>

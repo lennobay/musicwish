@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musicwish</title>
+</head>
+<body>
+    
+    <form id="form">
+        <input type="text" placeholder="Benutzername" name="username">
+        <input type="text" placeholder="Passwort" name="password">
+        <input type="submit" value="Anmelden">
+    </form>
+    <error>
+
+    </error>
+    <script>    
+
+        let params = new URLSearchParams(document.location.search)
+        let alternative_url = params.get("send_url")
+        const form = document.getElementById("form")
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const data = new FormData(form)
+            fetch("/api/login", {
+                "method": "POST",
+                "body": JSON.stringify({
+                    "username": data.get("username"),
+                    "password": data.get("password")
+                    }
+                )
+            }).then((data) => { if(data.status == 202){
+                if(alternative_url == null){
+
+                
+                window.location.href = "/portal"
+                }
+                else{
+                    window.location.href = alternative_url 
+                }
+            }
+        else if(data.status == 403){
+            document.querySelector("error").innerHTML = "Check your Username and Password"
+        }
+    else{
+        document.querySelector("error").innerHTML = "Please check the status page under /status"
+    }})
+
+        })
+        
+    </script>
+    <other_options>
+        <p>Stattdessen</p>
+        <button onclick="window.location.href='/register'">Regestrieren</button>
+        <button onclick="window.location.href='/'">An Event teilnehmen</button>
+    </other_options>
+       
+</body>
+</html>

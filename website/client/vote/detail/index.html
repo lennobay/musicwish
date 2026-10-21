@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musicwish</title>
+        <link rel="stylesheet" type="text/css" href="/index.css">
+</head>
+<body>
+    <header>
+        <header-left>
+        <p>Musicwish</p>
+        </header-left>
+    </header>
+    <hero>
+        <h1>Wilkommen bei der Veranstaltung: <p id="veranstaltung_id"></p></h1>
+        <h2>Lied: <p id="veranstaltung_song"></p></h2>
+        <button onclick="senddata()">Add Song</button>
+    </hero>
+    <script>
+
+    const params = new URL(window.location.href).searchParams
+
+    const event = params.get("event")
+    const song = params.get("songid")
+    document.getElementById("veranstaltung_song").innerHTML = song
+    document.getElementById("veranstaltung_id").innerHTML = event
+    function senddata(){
+      fetch("/api/client/vote_song?song_id=" + song + "&event_name=" + event, {
+        method: "POST",
+      }).then((res) => {
+        console.log(res.status)
+      })
+    }
+    </script>
+    <footer>
+        <p>&copy; MUSICWISH BY LENNARD HAUFE</p>
+        <p>Version v1.0.0</p>
+        <a href="https://haufe-server.de/en/imprint_privacy"
+            >Impressum und Privatspähre</a
+        >
+    </footer>
+</body>
+</html>

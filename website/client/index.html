@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musicwish</title>
+    <link rel="stylesheet" type="text/css" href="/index.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Creepster&display=swap"
+        rel="stylesheet"
+    />
+</head>
+<body>
+    <hero>
+        <hero-left>
+            <h1>Bitte wähle eine Option aus</h1>
+
+        </hero-left>
+        <hero-right-sub1>
+            <button onclick="lied_redirect()">Lied Wünschen</button>
+            <button onclick="lied_vote()">Für Lied abstimmen</button>
+    </hero-right-sub1>
+
+
+    </hero>
+    <script>
+
+    const params = new URL(window.location.href).searchParams
+
+    const event = params.get("event")
+    document.getElementById("veranstaltung_id").innerHTML = event
+    function lied_vote(){
+        window.location.href = "/client/vote/?event=" + event
+    }
+    function lied_redirect(){
+        window.location.href = "/client/add?event=" + event
+    }
+    </script>
+    <footer>
+        <p>&copy; MUSICWISH BY LENNARD HAUFE</p>
+        <p>Version v1.0.0</p>
+        <a href="https://haufe-server.de/en/imprint_privacy"
+            >Impressum und Privatspähre</a
+        >
+    </footer>
+</body>
+</html>

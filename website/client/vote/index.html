@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musicwish</title>
+        <link rel="stylesheet" type="text/css" href="/index.css">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Creepster&display=swap"
+            rel="stylesheet"
+        />
+</head>
+<body>
+    <hero>
+        <hero-right>
+        <h1>Wähle dein Lied zum Abstimmen</h1>
+        </hero-right>
+        <hero-allvote>
+
+        </hero-allvote>
+    </hero>
+    <script>
+
+    const params = new URL(window.location.href).searchParams
+
+    const event = params.get("event")
+    const song = params.get("songid")
+    fetch("/api/client/all_songs?event=" + event).then((res) => res.json()).then((data) => {
+          for (var i = 0; i < data.length; i++){
+            document.querySelector("hero-allvote").innerHTML  += `<div><h1>${data[i].Songid}</h1>|<p>Stimmen: ${data[i].Votes}</p> | <button onclick="window.location.href='/client/vote/detail?event=${event}&songid=${data[i].Songid}'">Abstimmen</button></div>`
+          }
+        })
+    </script>
+    <footer>
+        <p>&copy; MUSICWISH BY LENNARD HAUFE</p>
+        <p>Version v1.0.0</p>
+        <a href="https://haufe-server.de/en/imprint_privacy"
+            >Impressum und Privatspähre</a
+        >
+    </footer>
+</body>
+</html>
