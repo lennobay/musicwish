@@ -56,10 +56,12 @@ func Login(c *gin.Context) {
 
 }
 
+/*
 type USERCHECK struct {
 	Sessionid string `json:"sessionid" binding="required"`
-}
+} */
 
+/*
 func CheckSession(c *gin.Context) {
 
 	var usercheck USERCHECK
@@ -78,3 +80,4 @@ func CheckSession(c *gin.Context) {
 	}
 
 }
+*/
